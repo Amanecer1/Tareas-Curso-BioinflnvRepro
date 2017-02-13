@@ -1,2 +1,4 @@
 # Tareas-Curso-BioinflnvRepro
-Responde tarea 2
+Responde parte de la tarea 2
+
+Este repositorio tiene la imagen del curso de Codecacademy de "Command Line"
