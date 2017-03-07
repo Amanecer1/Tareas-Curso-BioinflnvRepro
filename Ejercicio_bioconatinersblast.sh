@@ -16,7 +16,7 @@ gunzip zebrafish.1.protein.faa.gz
 exit
 #en la PowerShell, preparo el directorio donde trabajaré y guardaré la base de datos de las secuencias
 docker run -v C:\Users\Erandi\Desktop\Bioinformatica:/data/ biocontainers/blast makeblastdb -in zebrafish.1.protein.faa -dbtype prot
-#corro docker y la herramienta de blast en biocontainers con los datos a comparar con blast
+#corro docker y la herramienta de blastp en biocontainers con los datos a comparar
 docker run -v C:\Users\Erandi\Desktop\Bioinformatica:/data/ biocontainers/blast blastp -query P04156.fasta -db zebrafish.1.protein.faa -out results.txt
 #fin
 
