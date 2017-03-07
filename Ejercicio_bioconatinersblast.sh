@@ -14,7 +14,7 @@ curl -O ftp://ftp.ncbi.nih.gov/refseq/D_rerio/mRNA_Prot/zebrafish.1.protein.faa.
 gunzip zebrafish.1.protein.faa.gz
 #salgo de mi contenedor con volumen
 exit
-#en la PowerShell, preparo la base de datos en el directorio donde guardaré la base de datos
+#en la PowerShell, preparo el directorio donde guardaré la base de datos de las secuencias
 docker run -v C:\Users\Erandi\Desktop\Bioinformatica:/data/ biocontainers/blast makeblastdb -in zebrafish.1.protein.faa -dbtype prot
 #corro docker y la herramienta de blast en biocontainers con los datos a comparar con blast
 docker run -v C:\Users\Erandi\Desktop\Bioinformatica:/data/ biocontainers/blast blastp -query P04156.fasta -db zebrafish.1.protein.faa -out results.txt
