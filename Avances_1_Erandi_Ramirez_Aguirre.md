@@ -12,7 +12,7 @@ Genomas completos de al menos 5 especies del género Treponema, de éstos, la ma
 
 1. Búsqueda y descarga de genomas completos en NCBI, con el buscador de genomas, en [https://www.ncbi.nlm.nih.gov/genome/browse/]("Buscador de genomas de NCBI")
 
-2. En R y con el paquete SimRAD, realizaré una simulación de RAD's con una enzima de restricción: PstI (corte 5' TGCA 3'). Se aplicará el método de RADseq "original".
+2. En R y con el paquete SimRAD, realizaré una simulación de loci RAD con una enzima de restricción: PstI (corte 5' TGCA 3'). Se aplicará el método de RADseq "original".
 
 3. Esos fragmentos se exportarán a un archivo tipo fasta, y se buscará su compresión.
 
