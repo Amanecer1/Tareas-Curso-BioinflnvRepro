@@ -1,0 +1,96 @@
+---
+title: "ExplorandoMaiz"
+author: "Erandi Ramírez Aguirre"
+date: "29 de abril de 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Antes que nada, limpiar el ambiente de trabajo de R.
+
+```{r}
+rm(list=ls())
+```
+
+Llamamos el archivo que se va analizar
+
+```{r}
+maiz<- read.table ("..\\meta\\maizteocintle_SNP50k_meta_extended.txt", header=T, sep= "\t" )
+```
+
+Para conocer el tipo de objeto que es "maiz"
+
+```{r}
+class(maiz)
+```
+
+Para ver las primers líneas de "maiz"
+
+```{r}
+head(maiz)
+```
+
+Para conocer el número de filas y que serían el número de muestras
+
+```{r}
+nrow(maiz)
+```
+
+Para saber cuántos estados tienen muestras
+
+```{r}
+length(levels(maiz$Estado))
+#también funciona:
+nlevels(maiz$Estado)
+```
+
+Para saber el número de muestras recolectadas antes de 1980
+
+```{r}
+año <-(maiz$AÌ.o._de_colecta)
+x<-año<1980
+sum(x, na.rm=T)
+```
+
+Para saber cuántas muestras hay por raza
+
+```{r}
+table(maiz$Raza)
+```
+
+Promedio de altitud de las muestras
+
+```{r}
+mean (maiz$Altitud, na.rm=T)
+```
+
+Altitud min y max de recolección de muestras
+
+```{r}
+min(maiz$Altitud, na.rm=T)
+max(maiz$Altitud, na.rm=T)
+```
+
+Para crear un nuevo data.frame con los datos de Olotillo 
+
+```{r}
+olot<-subset(maiz, maiz$Raza=="Olotillo")
+class(olot)
+```
+
+Para crear un nuevo df con los datos de Reventador, Jala y Ancho
+
+```{r}
+grupito<-subset(maiz, maiz$Raza==c("Reventador", "Jala", "Ancho"))
+dim(grupito)
+```
+
+Escribir la matriz anterior en un archivo submat.csv en meta
+
+```{r}
+write.csv(grupito, "..//submat.csv")
+```
+
