@@ -1,0 +1,70 @@
+---
+title: "SimRAD_ejemplo"
+author: "Erandi Ramírez Aguirre"
+date: "28 de abril de 2017"
+output: 
+  html_document: 
+    toc: yes
+---
+
+Antes de cualquier operación, hay que limpiar el ambiente de R.
+
+```{r}
+rm (list= ls ())
+```
+
+Cargar el paquete SimRAD
+
+```{r}
+library(SimRAD)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Pasos para hacer una simulación con el paquete SimRAD de R.
+
+1. Crear un objeto con una secuencia de referencia. Función para jalar una secuencia de referencia en formato fasta
+
+```{r cars}
+referencia<-ref.DNAseq(FASTA.file= "..\\T.denticola.fasta", subselect.contigs =T, prop.contigs = 0.1)
+```
+
+2. Determinar los sitios de restricción. Comandos para crear los objetos que contengan los sitios de corte de alguna enzima de restricción
+
+Enzima PstI: sitios de corte
+
+```{r}
+cs_5p1 <- "TGCA"
+cs_3p1 <- "ACGT"
+```
+
+
+3. Realizar la digestión. Función para hacer una digestión simulada de la secuencia de referencia con los sitios de corte de la enzima de restricción
+
+```{r}
+simseq.dig <- insilico.digest(referencia, cs_5p1, cs_3p1, verbose=TRUE)
+```
+
+3.1 Observar los fragmentos resultantes. Comando para ver la primeras líneas del resultado de la digestión
+
+```{r}
+head(simseq.dig)
+```
+
+4. Crear un tipo de archivo para contener las secuencias. El comando DNAStringSet permite convertir a un tipo de archivo
+
+```{r}
+Treponema<-DNAStringSet(x= simseq.dig)
+```
+
+5. Exportar a un archivo los nuevos fragmentos. Comando para escribir un archivo FASTA con los fragmentos que se generaron en la digestión
+
+```{r}
+writeXStringSet(Treponema, ".\\digeridos_SimRAD\\T.denticol.dig.fasta", append=FALSE, compress=T, compression_level=NA, format="fasta")
+```
+
+
+
+
